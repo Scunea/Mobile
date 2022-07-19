@@ -230,7 +230,7 @@ export default function Activities(props: { domain: string | undefined; info: Us
 
     setIsExtended(currentScrollPosition <= 0);
   }} /> : <Text style={{ padding: 24 }}>{!searchFound ? 'No activities!' : 'No activities found!'}</Text>}
-            <AnimatedFAB icon="plus" label="New activity" extended={isExtended} style={{ position: 'absolute', bottom: 16, right: 16 }} onPress={() => setNewActivity(true)} />
+            {props.info?.teacher ? <AnimatedFAB icon="plus" label="New activity" extended={isExtended} style={{ position: 'absolute', bottom: 16, right: 16 }} onPress={() => setNewActivity(true)} /> : null}
         </View>
     );
   }
