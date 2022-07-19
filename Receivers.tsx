@@ -16,10 +16,10 @@ export default function Receivers(props: { info: User | null; receiver: string[]
     useEffect(() => {
         if (props.info) {
             setReceivers(() => {
-                const administrators = props.info?.available.filter((x: SimpleUser) => x.type === 'Administrator');
-                const teachers = props.info?.available.filter((x: SimpleUser) => x.type === 'Teacher');
-                const students = props.info?.available.filter((x: SimpleUser) => x.type === 'Student');
-                const parents = props.info?.available.filter((x: SimpleUser) => x.type === 'Parent');
+                const administrators = props.info?.available.filter((x: SimpleUser) => x.type === 'administrator');
+                const teachers = props.info?.available.filter((x: SimpleUser) => x.type === 'teacher');
+                const students = props.info?.available.filter((x: SimpleUser) => x.type === 'student');
+                const parents = props.info?.available.filter((x: SimpleUser) => x.type === 'parent');
 
                 let thingy: Receiver[] = [];
                 thingy.push({ key: 'selectors', text: 'Selectors', type: 'Header', noDivider: true });
@@ -107,7 +107,7 @@ export default function Receivers(props: { info: User | null; receiver: string[]
                 setReceiver([]);
             }
         } else if (item?.key === 'allStudents') {
-            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'Student').map((x: SimpleUser) => x.id);
+            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'student').map((x: SimpleUser) => x.id);
             let found = 0;
             thingy?.forEach((x: string) => {
                 if (receiver.includes(x)) {
@@ -134,7 +134,7 @@ export default function Receivers(props: { info: User | null; receiver: string[]
                 });
             }
         } else if (item?.key === 'allAdministrators') {
-            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'Administrator').map((x: SimpleUser) => x.id);
+            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'administrator').map((x: SimpleUser) => x.id);
             let found = 0;
             thingy?.forEach((x: string) => {
                 if (receiver.includes(x)) {
@@ -161,7 +161,7 @@ export default function Receivers(props: { info: User | null; receiver: string[]
                 });
             }
         } else if (item?.key === 'allParents') {
-            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'Parent').map((x: SimpleUser) => x.id);
+            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'parent').map((x: SimpleUser) => x.id);
             let found = 0;
             thingy?.forEach((x: string) => {
                 if (receiver.includes(x)) {
@@ -188,7 +188,7 @@ export default function Receivers(props: { info: User | null; receiver: string[]
                 });
             }
         } else if (item?.key === 'allTeachers') {
-            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'Teacher').map((x: SimpleUser) => x.id);
+            const thingy = props.info?.available.filter((x: SimpleUser) => x.type === 'teacher').map((x: SimpleUser) => x.id);
             let found = 0;
             thingy?.forEach((x: string) => {
                 if (receiver.includes(x)) {

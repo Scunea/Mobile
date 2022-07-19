@@ -21,7 +21,7 @@ export default function Members(props: { domain: string | undefined; info: User 
             'Student'
         }];
     }
-        setTeachers(props.info?.available.concat(extra).filter(x => x.type === 'Teacher').sort((a, b) => a.name.localeCompare(b.name)) ?? []);
+        setTeachers(props.info?.available.concat(extra).filter(x => x.type === 'teacher').sort((a, b) => a.name.localeCompare(b.name)) ?? []);
     }, [props.info]);
 
     return ( 

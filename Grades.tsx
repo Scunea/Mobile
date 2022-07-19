@@ -265,7 +265,7 @@ export default function Grades(props: { domain: string | undefined; info: User |
         </Portal>
         <View>
         <Text variant="titleLarge" style={{ alignSelf: 'center' }}>Choose a student</Text>
-        {props.info?.available.filter(x => x.type === 'Student').length > 0 ? props.info?.available.filter(x => x.type === 'Student').sort((a, b) => a.name.localeCompare(b.name)).map((x, i) => <Button icon="school" key={i} style={{ marginTop: 4 }} onPress={() => {
+        {props.info?.available.filter(x => x.type === 'student').length > 0 ? props.info?.available.filter(x => x.type === 'student').sort((a, b) => a.name.localeCompare(b.name)).map((x, i) => <Button icon="school" key={i} style={{ marginTop: 4 }} onPress={() => {
                 setSelectedUser(x);
             }}>
                 {x.name}

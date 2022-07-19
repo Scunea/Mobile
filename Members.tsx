@@ -198,7 +198,7 @@ export default function Members(props: { domain: string | undefined; info: User 
             <DataTable.Cell>{person.name}</DataTable.Cell>
             <DataTable.Cell>{person.email}</DataTable.Cell>
             <DataTable.Cell>{person.subject ?? 'N/A'}</DataTable.Cell>
-            <DataTable.Cell>{person.type === 'Parent' ? person.children?.map(x => x.name).join(', ') : 'N/A'}</DataTable.Cell>
+            <DataTable.Cell>{person.type === 'parent' ? person.children?.map(x => x.name).join(', ') : 'N/A'}</DataTable.Cell>
             <DataTable.Cell>{person.type}</DataTable.Cell>
         </DataTable.Row>)}
     </DataTable>

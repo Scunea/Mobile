@@ -14,7 +14,7 @@ import Reports from './Reports';
 import Activities from './Activities';
 import Settings from './Settings';
 
-const domain = process.env.DOMAIN;
+let domain = process.env.DOMAIN;
 
 export default function App() {
   const [index, setIndex] = useState(0);
