@@ -201,7 +201,13 @@ export default function Account(props: { domain: string | undefined; info: User 
                 <Button icon="lock" mode="outlined" style={{ marginRight: 'auto' }} onPress={() => setShowTfaDialog(true)}>{!props.info?.tfa ? 'Set up 2FA' : 'Remove 2FA'}</Button>
                 <Button icon="delete" mode="contained" onPress={() => setShowDeleteDialog(true)}>Delete account</Button>
             </View>
-            <Button icon="logout" mode="contained" style={{ marginTop: 16 }} onPress={() => setShowSignOutDialog(true)}>Sign out</Button>
+            <View style={{ flexDirection: 'row', marginTop: 16 }}>
+                <Button icon="school" mode="outlined" style={{ marginRight: 'auto' }} onPress={async () => {
+                  await AsyncStorage.removeItem('school');
+                  await Updates.reloadAsync()
+                }}>Switch school</Button>
+                <Button icon="logout" mode="contained"  onPress={() => setShowSignOutDialog(true)}>Sign out</Button>
+            </View>
             </ScrollView>
             <FAB label="Save" icon="floppy" disabled={!name && !newPassword} style={{ position: 'absolute', margin: 16, right: 0, bottom: 0 }} onPress={() => setShowSaveDialog(true)} />
         </View>

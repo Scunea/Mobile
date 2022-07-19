@@ -3,7 +3,6 @@ import { ScrollView, View, FlatList } from 'react-native';
 import { Button, Text, TextInput, Portal, Dialog, Paragraph, Appbar, useTheme } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Updates from 'expo-updates';
-import Logo from './Logo';
 import { School } from './interfaces';
 
 export default function Login(props: { domain: string | undefined; }) {
