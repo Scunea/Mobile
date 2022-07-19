@@ -56,9 +56,6 @@ export default function App() {
   useEffect(() => {
     if (ws) {
       ws.addEventListener('message', (message: MessageEvent) => {
-        if (message.data === 'Ping!') {
-          ws.send('Pong!');
-        } else {
           const data = JSON.parse(message.data);
           if (data.event === 'editedSchool') {
             setUserInfo(userInfo => {
@@ -85,7 +82,7 @@ export default function App() {
             setUserInfo(userInfo => {
               if (userInfo) {
                 let newUserInfo = { ...userInfo };
-                newUserInfo.avaliable.push({
+                newUserInfo.available.push({
                   id: data.user.id,
                   name: data.user.name,
                   teacher: data.user.subject,
@@ -106,9 +103,9 @@ export default function App() {
                   newUserInfo.tfa = data.user.tfa;
                   newUserInfo.teacher = data.user.subject;
                 } else {
-                  const index = newUserInfo.avaliable.findIndex(x => x.id === data.user.id);
-                  newUserInfo.avaliable[index].name = data.user.name;
-                  newUserInfo.avaliable[index].teacher = data.user.subject;
+                  const index = newUserInfo.available.findIndex(x => x.id === data.user.id);
+                  newUserInfo.available[index].name = data.user.name;
+                  newUserInfo.available[index].teacher = data.user.subject;
                 }
                 return newUserInfo;
               } else {
@@ -119,9 +116,9 @@ export default function App() {
             setUserInfo(userInfo => {
               if (userInfo) {
                 let newUserInfo = { ...userInfo };
-                const index = newUserInfo.avaliable.findIndex(x => x.id === data.userId);
+                const index = newUserInfo.available.findIndex(x => x.id === data.userId);
                 if (index > -1) {
-                  newUserInfo.avaliable.splice(index, 1);
+                  newUserInfo.available.splice(index, 1);
                 }
                 return newUserInfo;
               } else {
@@ -129,7 +126,6 @@ export default function App() {
               }
             })
           }
-        }
       });
     }
   }, [ws]);

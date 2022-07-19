@@ -55,11 +55,10 @@ export default function Activities(props: { domain: string | undefined; info: Us
 
     if (props.ws) {
         props.ws.addEventListener('message', (message: MessageEvent) => {
-            if (message.data !== 'Ping!') {
                 const data = JSON.parse(message.data);
                 if (data.event === 'newActivity') {
                     setActivities(activities => {
-                        let newActivities = [data, ...activities];
+                        let newActivities = [data.activity, ...activities];
                         return newActivities;
                     });
                     setTitlesFuzzySet(titlesFuzzySet => {
@@ -69,18 +68,18 @@ export default function Activities(props: { domain: string | undefined; info: Us
                 } else if (data.event === 'editedActivity') {
                     setActivities(activities => {
                         let newActivities = [...activities];
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].title = data.newActivity.title;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].description = data.newActivity.description;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].title = data.newActivity.title;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].type = data.newActivity.type;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].delivery = data.newActivity.delivery;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].expiration = data.newActivity.expiration;
-                        newActivities[newActivities.findIndex(x => x.id === data.id)].receiver = data.newActivity.receiver;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].title = data.activity.title;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].description = data.activity.description;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].title = data.activity.title;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].type = data.activity.type;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].delivery = data.activity.delivery;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].expiration = data.activity.expiration;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].receiver = data.activity.receiver;
 
                         return newActivities;
                     });
                     setTitlesFuzzySet(titlesFuzzySet => {
-                        titlesFuzzySet.add(data.newActivity.title);
+                        titlesFuzzySet.add(data.activity.title);
                         return titlesFuzzySet;
                     });
                 } else if (data.event === 'deletedActivity') {
@@ -106,13 +105,23 @@ export default function Activities(props: { domain: string | undefined; info: Us
                     });
                 }
                 } else if (data.event === 'deliveredActivity') {
+                    if(data.user) {
+                        setActivities(activities => {
+                            let newActivities = [...activities];
+                            (newActivities[newActivities.findIndex(x => x.id === data.id)].delivered as any)[data.user] = data.delivery;
+                            (newActivities[newActivities.findIndex(x => x.id === data.id)].result as any)[data.user] = 'Unchecked';
+
+                            return newActivities;
+                        });
+                    } else {
                     setActivities(activities => {
                         let newActivities = [...activities];
-                        (newActivities[newActivities.findIndex(x => x.id === data.id)].delivered as any)[data.user] = data.delivery;
-                        (newActivities[newActivities.findIndex(x => x.id === data.id)].result as any)[data.user] = 'Unchecked';
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].delivered = data.delivery;
+                        newActivities[newActivities.findIndex(x => x.id === data.id)].result = 'Unchecked';
 
                         return newActivities;
                     });
+                }
                 } else if (data.event === 'resultActivity') {
                     if(data.user) {
                         setActivities(activities => {
@@ -130,7 +139,6 @@ export default function Activities(props: { domain: string | undefined; info: Us
                     });
                 }
                 }
-            }
         });
     }
     }, []);

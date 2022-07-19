@@ -188,7 +188,7 @@ export default function EditMessgae(props: { domain: string | undefined; setSele
     </Appbar.Header>
     <ScrollView contentContainerStyle={{ flex: 1 }}>
         <Pressable onPress={() => setShowReceiversDialog(true)}>
-            <TextInput label="Receivers" value={props.info?.avaliable.filter(x => receiver.includes(x.id)).map(x => x.name).join(', ')} mode="outlined" editable={false} />
+            <TextInput label="Receivers" value={props.info?.available.filter(x => receiver.includes(x.id)).map(x => x.name).join(', ')} mode="outlined" editable={false} />
         </Pressable>
         <TextInput label="Title" mode="outlined" value={title} onChangeText={text => setTitle(text)} />
         {oldFiles.map(x => x.name).concat(files.map(x => x.filename)).length > 0 ? <List.Accordion

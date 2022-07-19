@@ -50,7 +50,6 @@ export default function Reports(props: { domain: string | undefined; info: User 
 
         if (props.ws) {
             props.ws.addEventListener('message', (message: MessageEvent) => {
-                if (message.data !== 'Ping!') {
                     const data = JSON.parse(message.data);
                     if (data.event === 'newReport') {
                         setReports(reports => {
@@ -77,7 +76,6 @@ export default function Reports(props: { domain: string | undefined; info: User 
                             newReports.splice(newReports.findIndex(x => x.id === data.id), 1);
                             return newReports;
                         });
-                    }
                 }
             });
         }

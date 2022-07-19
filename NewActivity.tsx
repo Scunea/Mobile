@@ -153,7 +153,7 @@ export default function NewActivity(props: { domain: string | undefined; newActi
             }} onCancel={() => setShowExpirationDate(false)} />
     <ScrollView contentContainerStyle={{ flex: 1 }}>
         <Pressable onPress={() => setShowReceiversDialog(true)}>
-            <TextInput label="Receivers" value={props.info?.avaliable.filter(x => receiver.includes(x.id)).map(x => x.name).join(', ')} mode="outlined" editable={false} />
+            <TextInput label="Receivers" value={props.info?.available.filter(x => receiver.includes(x.id)).map(x => x.name).join(', ')} mode="outlined" editable={false} />
         </Pressable>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TextInput label="Expiration date" value={expirationDate?.toString() ?? 'None'} mode="outlined" editable={false} style={{ flex: 1 }} />

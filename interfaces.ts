@@ -80,7 +80,7 @@ export interface User {
     teacher: string;
     administrator: boolean;
     grades: Grade[];
-    avaliable: SimpleUser[];
+    available: SimpleUser[];
     children: string[]
 };
 
@@ -130,7 +130,6 @@ export interface Viewed {
 
 export interface OTP {
     secret: string;
-    uri: string;
     qr: string;
 }
 

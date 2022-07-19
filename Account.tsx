@@ -112,7 +112,7 @@ export default function Account(props: { domain: string | undefined; info: User 
                     method: 'POST',
                     body: JSON.stringify({
                       password: currentPassword,
-                      otp: otp
+                      otp: otp.split(" ").join("")
                     }),
                     headers: new Headers({
                       'Authorization': await AsyncStorage.getItem('token') ?? "",

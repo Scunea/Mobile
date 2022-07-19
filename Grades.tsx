@@ -33,12 +33,10 @@ export default function Grades(props: { domain: string | undefined; info: User |
 
         if (props.ws) {
             props.ws.addEventListener('message', (message: MessageEvent) => {
-                if (message.data !== 'Ping!') {
                     const data = JSON.parse(message.data);
                     if (data.event === 'newGrades') {
                         setData(data.grades);
                     }
-                }
             });
         }
     })();
@@ -267,7 +265,7 @@ export default function Grades(props: { domain: string | undefined; info: User |
         </Portal>
         <View>
         <Text variant="titleLarge" style={{ alignSelf: 'center' }}>Choose a student</Text>
-        {props.info?.avaliable.filter(x => x.type === 'Student').length > 0 ? props.info?.avaliable.filter(x => x.type === 'Student').sort((a, b) => a.name.localeCompare(b.name)).map((x, i) => <Button icon="school" key={i} style={{ marginTop: 4 }} onPress={() => {
+        {props.info?.available.filter(x => x.type === 'Student').length > 0 ? props.info?.available.filter(x => x.type === 'Student').sort((a, b) => a.name.localeCompare(b.name)).map((x, i) => <Button icon="school" key={i} style={{ marginTop: 4 }} onPress={() => {
                 setSelectedUser(x);
             }}>
                 {x.name}

@@ -36,7 +36,6 @@ export default function Members(props: { domain: string | undefined; info: User 
 
         if (props.ws) {
             props.ws.addEventListener('message', (message: MessageEvent) => {
-                if (message.data !== 'Ping!') {
                     const data = JSON.parse(message.data);
                     if (data.event === 'newUser') {
                         setPeople(people => {
@@ -72,7 +71,6 @@ export default function Members(props: { domain: string | undefined; info: User 
                             return newPeople;
                         });
                     }
-                }
             });
         };
     }, []);

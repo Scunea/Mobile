@@ -44,7 +44,6 @@ export default function Parents(props: { domain: string | undefined; info: User 
 
         if (props.ws) {
             props.ws.addEventListener('message', (message: MessageEvent) => {
-              if (message.data !== 'Ping!') {
                 const data = JSON.parse(message.data);
                 if (data.event === 'parentInvited') {
                   setParentsInvites(parents => {
@@ -77,7 +76,6 @@ export default function Parents(props: { domain: string | undefined; info: User 
                     return newChildren;
                   });
                 }
-              }
             });
           }
     }, []);
