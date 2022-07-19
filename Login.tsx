@@ -25,7 +25,7 @@ export default function Login(props: { domain: string | undefined; }) {
   useEffect(() => {
     (async () => {
     if (await AsyncStorage.getItem('token')) {
-        fetch(props.domain + '/loginByToken', {
+        fetch(props.domain + '/loginbytoken', {
             method: 'POST',
             body: JSON.stringify({
                 token: await AsyncStorage.getItem('token')
